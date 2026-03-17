@@ -1,0 +1,534 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TB Awareness Pamphlet – Delhi ACF Intervention</title>
+<link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --saffron:#E8651A;--saffron-dk:#C04E0A;--teal:#1A6E6E;
+  --cream:#FDF7EE;--charcoal:#1C1C1C;--warm-grey:#8A7A6A;
+  --white:#FFFFFF;--red:#C0392B;--green:#1E7E45;
+}
+body{font-family:'DM Sans',sans-serif;overflow:hidden;background:#D4C9BC}
+
+/* ══════════════ DESKTOP ══════════════ */
+#dv{
+  position:fixed;inset:0;display:flex;align-items:center;
+  justify-content:center;cursor:pointer;overflow:hidden;
+}
+#sw{width:900px;transform-origin:center center;position:relative}
+#ff,#bf{width:900px;transition:opacity .55s ease,transform .55s ease}
+#bf{position:absolute;top:0;left:0;opacity:0;pointer-events:none;transform:scale(.97) translateY(8px)}
+#dv.flipped #ff{opacity:0;pointer-events:none;transform:scale(.97) translateY(8px)}
+#dv.flipped #bf{opacity:1;pointer-events:auto;transform:scale(1) translateY(0)}
+
+#side-ind{
+  position:fixed;top:22px;left:50%;transform:translateX(-50%);
+  background:rgba(28,28,28,.72);color:#fff;padding:5px 16px;
+  border-radius:20px;font-size:11px;font-weight:600;letter-spacing:.14em;
+  text-transform:uppercase;pointer-events:none;backdrop-filter:blur(6px);
+}
+#flip-hint{
+  position:fixed;bottom:26px;left:50%;transform:translateX(-50%);
+  background:rgba(28,28,28,.65);color:#fff;padding:8px 20px;
+  border-radius:20px;font-size:11px;font-weight:600;letter-spacing:.1em;
+  text-transform:uppercase;pointer-events:none;backdrop-filter:blur(6px);
+  animation:pulse 2.8s ease-in-out infinite;
+}
+@keyframes pulse{0%,100%{opacity:.75}50%{opacity:1}}
+
+/* ══════════════ MOBILE ══════════════ */
+#mv{display:none;position:fixed;inset:0}
+.ps{position:absolute;inset:0;overflow:hidden}
+.pt{display:flex;height:100%;transition:transform .4s cubic-bezier(.4,0,.2,1);will-change:transform}
+.mp{flex-shrink:0;width:100vw;height:100%;overflow-y:auto;-webkit-overflow-scrolling:touch}
+
+.mpl{
+  background:var(--charcoal);color:rgba(255,255,255,.55);
+  padding:8px 18px;font-size:10px;font-weight:600;letter-spacing:.18em;
+  text-transform:uppercase;display:flex;align-items:center;justify-content:space-between;
+  position:sticky;top:0;z-index:5;
+}
+.mpl .sb{
+  background:var(--saffron);color:#fff;padding:2px 9px;
+  border-radius:10px;font-size:9px;letter-spacing:.08em;
+}
+.mpl .sb.back{background:var(--teal)}
+
+.mnav{
+  position:fixed;bottom:0;left:0;right:0;
+  background:rgba(28,28,28,.95);backdrop-filter:blur(12px);
+  -webkit-backdrop-filter:blur(12px);
+  padding:10px 18px;padding-bottom:calc(10px + env(safe-area-inset-bottom));
+  display:flex;align-items:center;gap:12px;z-index:100;
+}
+.nb{
+  background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.15);
+  color:#fff;width:36px;height:36px;border-radius:50%;font-size:17px;
+  cursor:pointer;display:flex;align-items:center;justify-content:center;
+  flex-shrink:0;transition:background .2s,opacity .2s;
+  -webkit-tap-highlight-color:transparent;border:none;
+}
+.nb:disabled{opacity:.22}
+.nb:not(:disabled):active{background:rgba(255,255,255,.25)}
+.nc{flex:1;display:flex;flex-direction:column;align-items:center;gap:7px}
+.nl{font-size:10px;color:rgba(255,255,255,.5);letter-spacing:.14em;text-transform:uppercase;font-weight:600;white-space:nowrap}
+.nd{display:flex;gap:5px;align-items:center}
+.dot{height:6px;border-radius:3px;background:rgba(255,255,255,.25);transition:all .3s;cursor:pointer;width:6px}
+.dot.on{background:var(--saffron);width:20px}
+
+/* ══════════════ PAMPHLET GRID ══════════════ */
+.pamphlet{
+  width:900px;display:grid;grid-template-columns:repeat(3,1fr);
+  box-shadow:0 20px 60px rgba(0,0,0,.22),0 4px 12px rgba(0,0,0,.12);
+  border-radius:4px;overflow:hidden;
+}
+.topbar{padding:13px 20px;font-size:10px;letter-spacing:.14em;text-transform:uppercase;font-weight:600;display:flex;align-items:center;gap:8px}
+.ntep-badge{background:rgba(255,255,255,.22);border-radius:3px;padding:2px 7px}
+.pfooter{padding:13px 20px;font-size:10px;line-height:1.6}
+
+/* F1 */
+.f1{background:var(--saffron);color:var(--white);display:flex;flex-direction:column;position:relative;overflow:hidden;border-left:2px dashed rgba(255,255,255,.22);order:3}
+.f1 .topbar{background:var(--saffron-dk)}
+.f1-body{flex:1;display:flex;flex-direction:column;justify-content:center;align-items:flex-start;padding:32px 24px;gap:18px}
+.f1-eye{font-size:10.5px;letter-spacing:.2em;text-transform:uppercase;opacity:.8;font-weight:500}
+.f1-hl{font-family:'Libre Baskerville',serif;font-size:30px;line-height:1.18;font-weight:700}
+.f1-hl em{font-style:italic;opacity:.9}
+.f1-rule{width:40px;height:3px;background:rgba(255,255,255,.4);border-radius:2px}
+.f1-sub{font-size:13px;line-height:1.6;opacity:.9;max-width:220px}
+.f1-free{background:var(--white);color:var(--green);font-size:11px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;padding:4px 10px;border-radius:2px;display:inline-block}
+.f1-cta{background:rgba(255,255,255,.14);border:1.5px solid rgba(255,255,255,.5);color:var(--white);font-weight:700;font-size:12px;letter-spacing:.06em;text-transform:uppercase;padding:10px 20px;border-radius:3px;display:inline-block}
+.f1-geo{position:absolute;bottom:-40px;right:-40px;width:160px;height:160px;border-radius:50%;border:28px solid rgba(255,255,255,.1);pointer-events:none}
+.f1-geo2{position:absolute;bottom:30px;right:20px;width:60px;height:60px;border-radius:50%;border:10px solid rgba(255,255,255,.18);pointer-events:none}
+.f1 .pfooter{background:rgba(0,0,0,.15);opacity:.85}
+
+/* F2 */
+.f2{background:var(--cream);color:var(--charcoal);padding:32px 22px;display:flex;flex-direction:column;gap:20px;border-left:2px dashed rgba(0,0,0,.09);order:2}
+.f2-title{font-family:'Libre Baskerville',serif;font-size:17px;font-weight:700;color:var(--saffron-dk);line-height:1.25}
+.f2-intro{font-size:12.5px;line-height:1.65;color:#444}
+.sym-grid{display:grid;grid-template-columns:1fr 1fr;gap:9px}
+.sym-card{background:var(--white);border-radius:6px;padding:12px 10px;border-top:3px solid var(--saffron);display:flex;flex-direction:column;gap:4px}
+.sym-icon{font-size:20px}
+.sym-name{font-size:11.5px;font-weight:700;color:var(--charcoal);line-height:1.2}
+.sym-detail{font-size:10px;color:var(--warm-grey);line-height:1.4}
+.f2-warn{background:#FEF3EC;border-left:4px solid var(--saffron);border-radius:0 4px 4px 0;padding:12px 14px;font-size:11.5px;line-height:1.6;color:#5a3010}
+.f2-warn strong{color:var(--saffron-dk)}
+
+/* F3 */
+.f3{background:var(--teal);color:var(--white);display:flex;flex-direction:column;position:relative;overflow:hidden;order:1}
+.f3-hdr{background:rgba(0,0,0,.2);padding:20px 22px}
+.f3-hdr-lbl{font-size:10px;letter-spacing:.2em;text-transform:uppercase;opacity:.7;margin-bottom:6px}
+.f3-hdr-ttl{font-family:'Libre Baskerville',serif;font-size:16px;font-weight:700;line-height:1.3}
+.f3-body{flex:1;padding:24px 22px;display:flex;flex-direction:column;gap:18px}
+.steps{display:flex;flex-direction:column;gap:14px}
+.step{display:flex;gap:12px;align-items:flex-start}
+.step-n{width:26px;height:26px;border-radius:50%;background:var(--saffron);color:var(--white);font-size:12px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.step-t{font-size:12px;line-height:1.55;opacity:.93}
+.step-t strong{display:block;font-size:12.5px;margin-bottom:2px;opacity:1}
+.f3-rule{height:1px;background:rgba(255,255,255,.18)}
+.f3-free{background:rgba(255,255,255,.1);border-radius:6px;padding:14px 16px;display:flex;flex-direction:column;gap:5px}
+.f3-free-lbl{font-size:10px;letter-spacing:.15em;text-transform:uppercase;opacity:.7}
+.f3-free-val{font-size:13px;font-weight:600;line-height:1.4}
+.f3-conf{font-size:11.5px;line-height:1.6;opacity:.85}
+.f3 .pfooter{background:rgba(0,0,0,.22);color:rgba(255,255,255,.6);font-size:10px}
+.f3-geo{position:absolute;top:-50px;right:-50px;width:130px;height:130px;border-radius:50%;border:20px solid rgba(255,255,255,.07);pointer-events:none}
+
+/* B1 */
+.b1{background:var(--white);color:var(--charcoal);padding:32px 22px;display:flex;flex-direction:column;gap:18px;border-right:2px dashed rgba(0,0,0,.09);order:1}
+.b1-lbl{font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--teal);font-weight:600}
+.b1-title{font-family:'Libre Baskerville',serif;font-size:17px;font-weight:700;line-height:1.3}
+.myths{display:flex;flex-direction:column;gap:12px}
+.myth{padding:12px 14px;border-radius:6px;background:#F7F3EE}
+.mtag{font-size:9.5px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;margin-bottom:3px}
+.mtag.m{color:var(--red)}.mtag.f{color:var(--green)}
+.mtext{font-size:11.5px;line-height:1.5}
+.mdiv{height:1px;background:#ddd;margin:8px 0}
+
+/* B2 */
+.b2{background:var(--charcoal);color:var(--white);display:flex;flex-direction:column;overflow:hidden;border-right:2px dashed rgba(255,255,255,.12);order:2}
+.b2-hero{background:linear-gradient(155deg,var(--saffron-dk) 0%,var(--saffron) 100%);padding:28px 24px;display:flex;flex-direction:column;gap:10px}
+.b2-eye{font-size:10px;letter-spacing:.2em;text-transform:uppercase;opacity:.8}
+.b2-quote{font-family:'Libre Baskerville',serif;font-size:18px;font-weight:700;font-style:italic;line-height:1.3}
+.b2-attr{font-size:11px;opacity:.8;font-weight:500}
+.b2-body{flex:1;padding:22px 24px;display:flex;flex-direction:column;gap:16px}
+.b2-slbl{font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--saffron);font-weight:600}
+.b2-stats{display:flex;gap:10px}
+.b2-stat{flex:1;background:rgba(255,255,255,.07);border-radius:6px;padding:12px 10px;text-align:center}
+.b2-snum{font-size:24px;font-weight:700;color:var(--saffron);line-height:1;font-family:'Libre Baskerville',serif}
+.b2-sdsc{font-size:10px;line-height:1.4;color:rgba(255,255,255,.55);margin-top:4px}
+.b2-txt{font-size:12px;line-height:1.65;color:rgba(255,255,255,.82)}
+.b2 .pfooter{background:rgba(255,255,255,.05);color:rgba(255,255,255,.45);font-size:10px;line-height:1.6}
+
+/* B3 */
+.b3{background:var(--saffron);color:var(--white);display:flex;flex-direction:column;order:3}
+.b3-top{background:var(--saffron-dk);padding:20px 22px}
+.b3-tlbl{font-size:10px;letter-spacing:.18em;text-transform:uppercase;opacity:.75;margin-bottom:6px}
+.b3-tttl{font-family:'Libre Baskerville',serif;font-size:16px;font-weight:700;line-height:1.3}
+.b3-body{flex:1;padding:22px 22px;display:flex;flex-direction:column;gap:14px}
+.b3-row{display:flex;flex-direction:column;gap:3px}
+.b3-key{font-size:10px;letter-spacing:.12em;text-transform:uppercase;opacity:.65;font-weight:600}
+.b3-val{font-size:13px;font-weight:600;line-height:1.4}
+.b3-sep{height:1px;background:rgba(255,255,255,.22)}
+.b3-prm{background:rgba(255,255,255,.15);border-radius:6px;padding:13px 15px;font-size:12px;line-height:1.6}
+.b3-logo{margin-top:auto;padding:18px 22px;border-top:1px solid rgba(255,255,255,.2);display:flex;flex-direction:column;gap:4px}
+.b3-ltxt{font-family:'Libre Baskerville',serif;font-size:13px;font-weight:700}
+.b3-lsub{font-size:10px;opacity:.7;line-height:1.4}
+
+/* ══════════════ MOBILE BREAKPOINT ══════════════ */
+@media(max-width:700px){
+  #dv{display:none}
+  #mv{display:block}
+  /* remove desktop-only borders/order inside mobile panels */
+  .mp .f1,.mp .f2,.mp .f3,.mp .b1,.mp .b2,.mp .b3{
+    border:none;order:unset;min-height:calc(100vh - 32px - 64px);
+  }
+  .mp .f1-body{padding:28px 20px}
+  .mp .f1-hl{font-size:34px}
+  .mp .f3-hdr{padding:18px 20px}
+  .mp .f3-body{padding:22px 20px}
+  .mp .f2{padding:28px 20px}
+  .mp .b1{padding:28px 20px}
+  .mp .b2-hero{padding:24px 20px}
+  .mp .b2-body{padding:22px 20px}
+  .mp .b3-top{padding:18px 20px}
+  .mp .b3-body{padding:22px 20px}
+  .mp .b3-logo{padding:16px 20px}
+  /* nav clearance */
+  .mp .f1 .pfooter,.mp .f3 .pfooter,.mp .b2 .pfooter,.mp .b3 .b3-logo{padding-bottom:72px}
+  .mp .f2,.mp .b1{padding-bottom:72px}
+}
+@media(max-width:380px){
+  .mp .sym-grid{grid-template-columns:1fr}
+  .mp .b2-stats{flex-direction:column}
+}
+</style>
+</head>
+<body>
+
+<!-- ══════════════════════════════════
+     DESKTOP VIEW
+══════════════════════════════════ -->
+<div id="dv">
+  <div id="sw">
+
+    <!-- FRONT -->
+    <div id="ff">
+      <div class="pamphlet">
+        <div class="f3">
+          <div class="f3-geo"></div>
+          <div class="f3-hdr">
+            <div class="f3-hdr-lbl">Your 3-step guide</div>
+            <div class="f3-hdr-ttl">What happens when you visit the tent?</div>
+          </div>
+          <div class="f3-body">
+            <div class="steps">
+              <div class="step"><div class="step-n">1</div><div class="step-t"><strong>Walk to the tent</strong>Look for the orange screening tent in your neighbourhood — no appointment needed.</div></div>
+              <div class="step"><div class="step-n">2</div><div class="step-t"><strong>Provide a sputum sample</strong>A trained health worker guides you. It takes a few minutes and is completely painless.</div></div>
+              <div class="step"><div class="step-n">3</div><div class="step-t"><strong>Receive your results</strong>NTEP contacts you directly and privately. If TB is detected, free treatment begins immediately.</div></div>
+            </div>
+            <div class="f3-rule"></div>
+            <div class="f3-free">
+              <div class="f3-free-lbl">Covered under</div>
+              <div class="f3-free-val">National TB Elimination Programme — Testing &amp; Treatment are 100% Free</div>
+            </div>
+            <div class="f3-conf">All information you share is <strong>strictly confidential</strong>. Your privacy is protected throughout.</div>
+          </div>
+          <div class="pfooter">Samples are transported to NTEP labs within 24 hours. GeneXpert analysis ensures fast, accurate results.</div>
+        </div>
+        <div class="f2">
+          <div class="f2-title">Know the signs of TB</div>
+          <div class="f2-intro">Tuberculosis (TB) is serious but <strong>fully curable</strong>. Many people don't know they have it — which is why early testing matters. If you or a family member have any of these symptoms for <strong>2 weeks or more</strong>, get tested today.</div>
+          <div class="sym-grid">
+            <div class="sym-card"><div class="sym-icon">🫁</div><div class="sym-name">Persistent Cough</div><div class="sym-detail">Lasting 2+ weeks — even without blood</div></div>
+            <div class="sym-card"><div class="sym-icon">🌡️</div><div class="sym-name">Fever &amp; Night Sweats</div><div class="sym-detail">Low-grade fever, sweating at night</div></div>
+            <div class="sym-card"><div class="sym-icon">⚖️</div><div class="sym-name">Unexplained Weight Loss</div><div class="sym-detail">Losing weight without trying</div></div>
+            <div class="sym-card"><div class="sym-icon">😮‍💨</div><div class="sym-name">Fatigue &amp; Weakness</div><div class="sym-detail">Tired even after a full night's sleep</div></div>
+          </div>
+          <div class="f2-warn"><strong>You don't need symptoms to be tested.</strong> TB can be present before you feel unwell. Getting tested now protects you <em>and</em> everyone you love.</div>
+        </div>
+        <div class="f1">
+          <div class="topbar"><span>Govt. of India</span><span class="ntep-badge">NTEP</span></div>
+          <div class="f1-body">
+            <div class="f1-eye">TB Awareness &amp; Screening</div>
+            <div class="f1-hl">Protect<br>your family.<br><em>Know your<br>status.</em></div>
+            <div class="f1-rule"></div>
+            <div class="f1-sub">Free TB sputum screening is available <strong>right in your community</strong>. Visit the orange tent today — no appointment, no cost.</div>
+            <div class="f1-free">✓ 100% Free &nbsp;·&nbsp; ✓ Confidential</div>
+            <div class="f1-cta">Find your nearest tent →</div>
+          </div>
+          <div class="f1-geo"></div><div class="f1-geo2"></div>
+          <div class="pfooter">TB is curable. Early detection saves lives and protects your family.<br>Delhi Active Case Finding Initiative · Shahdara &amp; East Delhi</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- BACK -->
+    <div id="bf">
+      <div class="pamphlet">
+        <div class="b1">
+          <div class="b1-lbl">Let's clear things up</div>
+          <div class="b1-title">TB Myths vs. Facts</div>
+          <div class="myths">
+            <div class="myth"><div class="mtag m">✗ Myth</div><div class="mtext">"Only poor or weak people get TB."</div><div class="mdiv"></div><div class="mtag f">✓ Fact</div><div class="mtext">TB is a bacterial infection — anyone can get it. Actor <strong>Amitabh Bachchan</strong> was diagnosed with TB and made a full recovery after treatment.</div></div>
+            <div class="myth"><div class="mtag m">✗ Myth</div><div class="mtext">"TB testing is expensive and far away."</div><div class="mdiv"></div><div class="mtag f">✓ Fact</div><div class="mtext">Free screening is in <strong>your neighbourhood</strong>. No hospital trip — just walk to the orange tent.</div></div>
+            <div class="myth"><div class="mtag m">✗ Myth</div><div class="mtext">"If I test positive, everyone will find out."</div><div class="mdiv"></div><div class="mtag f">✓ Fact</div><div class="mtext">Results are <strong>strictly confidential</strong>. NTEP contacts only you, privately. You decide what to share.</div></div>
+          </div>
+        </div>
+        <div class="b2">
+          <div class="b2-hero">
+            <div class="b2-eye">A public message</div>
+            <div class="b2-quote">"TB is a disease. It can be treated. Don't hide it — fight it."</div>
+            <div class="b2-attr">— Inspired by Amitabh Bachchan, TB survivor &amp; public advocate</div>
+          </div>
+          <div class="b2-body">
+            <div class="b2-slbl">Why testing matters</div>
+            <div class="b2-stats">
+              <div class="b2-stat"><div class="b2-snum">55</div><div class="b2-sdsc">Average days between symptoms &amp; treatment in India</div></div>
+              <div class="b2-stat"><div class="b2-snum">80%</div><div class="b2-sdsc">Treatment success rate when TB is caught early</div></div>
+            </div>
+            <div class="b2-txt">Every day without a diagnosis means TB can spread to those around you — your children, parents, and neighbours. The sooner you test, the sooner you protect the people you love.</div>
+          </div>
+          <div class="pfooter">Based on India's National TB Prevalence Survey 2019–2021 and WHO Global TB Report 2024.</div>
+        </div>
+        <div class="b3">
+          <div class="b3-top"><div class="b3-tlbl">Find us</div><div class="b3-tttl">Screening tent locations &amp; schedule</div></div>
+          <div class="b3-body">
+            <div class="b3-row"><div class="b3-key">Pilot Zones</div><div class="b3-val">Shahdara &amp; East Delhi</div></div>
+            <div class="b3-sep"></div>
+            <div class="b3-row"><div class="b3-key">Tent Locations</div><div class="b3-val">Open spaces, market areas &amp; community gathering points near your home</div></div>
+            <div class="b3-sep"></div>
+            <div class="b3-row"><div class="b3-key">Hours</div><div class="b3-val">Mon – Sat · 8:00 AM – 5:00 PM</div></div>
+            <div class="b3-sep"></div>
+            <div class="b3-row"><div class="b3-key">No appointment needed</div><div class="b3-val">Walk in anytime during operating hours</div></div>
+            <div class="b3-prm"><strong>Our promise:</strong> Your sample reaches an NTEP lab within 24 hours. Results are shared privately. If TB is found, free treatment starts right away.</div>
+          </div>
+          <div class="b3-logo">
+            <div class="b3-ltxt">National TB Elimination Programme</div>
+            <div class="b3-lsub">Ministry of Health &amp; Family Welfare<br>Government of India · tbcindia.mohfw.gov.in</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div><!-- /sw -->
+  <div id="side-ind">◦ Front Side</div>
+  <div id="flip-hint">Click anywhere to see the back →</div>
+</div><!-- /dv -->
+
+<!-- ══════════════════════════════════
+     MOBILE VIEW
+══════════════════════════════════ -->
+<div id="mv">
+  <div class="ps">
+    <div class="pt" id="pt">
+
+      <!-- Panel 1: Cover -->
+      <div class="mp">
+        <div class="mpl"><span>Front Side · Trifold</span><span class="sb">Cover</span></div>
+        <div class="f1">
+          <div class="topbar"><span>Govt. of India</span><span class="ntep-badge">NTEP</span></div>
+          <div class="f1-body">
+            <div class="f1-eye">TB Awareness &amp; Screening</div>
+            <div class="f1-hl">Protect<br>your family.<br><em>Know your<br>status.</em></div>
+            <div class="f1-rule"></div>
+            <div class="f1-sub">Free TB sputum screening is available <strong>right in your community</strong>. Visit the orange tent today — no appointment, no cost.</div>
+            <div class="f1-free">✓ 100% Free &nbsp;·&nbsp; ✓ Confidential</div>
+            <div class="f1-cta">Find your nearest tent →</div>
+          </div>
+          <div class="f1-geo"></div><div class="f1-geo2"></div>
+          <div class="pfooter">TB is curable. Early detection saves lives and protects your family.<br>Delhi Active Case Finding Initiative · Shahdara &amp; East Delhi</div>
+        </div>
+      </div>
+
+      <!-- Panel 2: Symptoms -->
+      <div class="mp">
+        <div class="mpl"><span>Front Side · Trifold</span><span class="sb">Symptoms</span></div>
+        <div class="f2">
+          <div class="f2-title">Know the signs of TB</div>
+          <div class="f2-intro">Tuberculosis (TB) is serious but <strong>fully curable</strong>. Many people don't know they have it — which is why early testing matters. If you or a family member have any of these symptoms for <strong>2 weeks or more</strong>, get tested today.</div>
+          <div class="sym-grid">
+            <div class="sym-card"><div class="sym-icon">🫁</div><div class="sym-name">Persistent Cough</div><div class="sym-detail">Lasting 2+ weeks — even without blood</div></div>
+            <div class="sym-card"><div class="sym-icon">🌡️</div><div class="sym-name">Fever &amp; Night Sweats</div><div class="sym-detail">Low-grade fever, sweating at night</div></div>
+            <div class="sym-card"><div class="sym-icon">⚖️</div><div class="sym-name">Unexplained Weight Loss</div><div class="sym-detail">Losing weight without trying</div></div>
+            <div class="sym-card"><div class="sym-icon">😮‍💨</div><div class="sym-name">Fatigue &amp; Weakness</div><div class="sym-detail">Tired even after a full night's sleep</div></div>
+          </div>
+          <div class="f2-warn"><strong>You don't need symptoms to be tested.</strong> TB can be present before you feel unwell. Getting tested now protects you <em>and</em> everyone you love.</div>
+        </div>
+      </div>
+
+      <!-- Panel 3: How It Works -->
+      <div class="mp">
+        <div class="mpl"><span>Front Side · Trifold</span><span class="sb">How It Works</span></div>
+        <div class="f3">
+          <div class="f3-geo"></div>
+          <div class="f3-hdr"><div class="f3-hdr-lbl">Your 3-step guide</div><div class="f3-hdr-ttl">What happens when you visit the tent?</div></div>
+          <div class="f3-body">
+            <div class="steps">
+              <div class="step"><div class="step-n">1</div><div class="step-t"><strong>Walk to the tent</strong>Look for the orange screening tent in your neighbourhood — no appointment needed.</div></div>
+              <div class="step"><div class="step-n">2</div><div class="step-t"><strong>Provide a sputum sample</strong>A trained health worker guides you. It takes a few minutes and is completely painless.</div></div>
+              <div class="step"><div class="step-n">3</div><div class="step-t"><strong>Receive your results</strong>NTEP contacts you directly and privately. If TB is detected, free treatment begins immediately.</div></div>
+            </div>
+            <div class="f3-rule"></div>
+            <div class="f3-free"><div class="f3-free-lbl">Covered under</div><div class="f3-free-val">National TB Elimination Programme — Testing &amp; Treatment are 100% Free</div></div>
+            <div class="f3-conf">All information you share is <strong>strictly confidential</strong>. Your privacy is protected throughout.</div>
+          </div>
+          <div class="pfooter">Samples are transported to NTEP labs within 24 hours. GeneXpert analysis ensures fast, accurate results.</div>
+        </div>
+      </div>
+
+      <!-- Panel 4: Myths vs Facts -->
+      <div class="mp">
+        <div class="mpl"><span>Back Side · Trifold</span><span class="sb back">Myths vs Facts</span></div>
+        <div class="b1">
+          <div class="b1-lbl">Let's clear things up</div>
+          <div class="b1-title">TB Myths vs. Facts</div>
+          <div class="myths">
+            <div class="myth"><div class="mtag m">✗ Myth</div><div class="mtext">"Only poor or weak people get TB."</div><div class="mdiv"></div><div class="mtag f">✓ Fact</div><div class="mtext">TB is a bacterial infection — anyone can get it. Actor <strong>Amitabh Bachchan</strong> was diagnosed with TB and made a full recovery after treatment.</div></div>
+            <div class="myth"><div class="mtag m">✗ Myth</div><div class="mtext">"TB testing is expensive and far away."</div><div class="mdiv"></div><div class="mtag f">✓ Fact</div><div class="mtext">Free screening is in <strong>your neighbourhood</strong>. No hospital trip — just walk to the orange tent.</div></div>
+            <div class="myth"><div class="mtag m">✗ Myth</div><div class="mtext">"If I test positive, everyone will find out."</div><div class="mdiv"></div><div class="mtag f">✓ Fact</div><div class="mtext">Results are <strong>strictly confidential</strong>. NTEP contacts only you, privately. You decide what to share.</div></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Panel 5: Why It Matters -->
+      <div class="mp">
+        <div class="mpl"><span>Back Side · Trifold</span><span class="sb back">Why It Matters</span></div>
+        <div class="b2">
+          <div class="b2-hero">
+            <div class="b2-eye">A public message</div>
+            <div class="b2-quote">"TB is a disease. It can be treated. Don't hide it — fight it."</div>
+            <div class="b2-attr">— Inspired by Amitabh Bachchan, TB survivor &amp; public advocate</div>
+          </div>
+          <div class="b2-body">
+            <div class="b2-slbl">Why testing matters</div>
+            <div class="b2-stats">
+              <div class="b2-stat"><div class="b2-snum">55</div><div class="b2-sdsc">Average days between symptoms &amp; treatment in India</div></div>
+              <div class="b2-stat"><div class="b2-snum">80%</div><div class="b2-sdsc">Treatment success rate when TB is caught early</div></div>
+            </div>
+            <div class="b2-txt">Every day without a diagnosis means TB can spread to those around you — your children, parents, and neighbours. The sooner you test, the sooner you protect the people you love.</div>
+          </div>
+          <div class="pfooter">Based on India's National TB Prevalence Survey 2019–2021 and WHO Global TB Report 2024.</div>
+        </div>
+      </div>
+
+      <!-- Panel 6: Where To Go -->
+      <div class="mp">
+        <div class="mpl"><span>Back Side · Trifold</span><span class="sb back">Where To Go</span></div>
+        <div class="b3">
+          <div class="b3-top"><div class="b3-tlbl">Find us</div><div class="b3-tttl">Screening tent locations &amp; schedule</div></div>
+          <div class="b3-body">
+            <div class="b3-row"><div class="b3-key">Pilot Zones</div><div class="b3-val">Shahdara &amp; East Delhi</div></div>
+            <div class="b3-sep"></div>
+            <div class="b3-row"><div class="b3-key">Tent Locations</div><div class="b3-val">Open spaces, market areas &amp; community gathering points near your home</div></div>
+            <div class="b3-sep"></div>
+            <div class="b3-row"><div class="b3-key">Hours</div><div class="b3-val">Mon – Sat · 8:00 AM – 5:00 PM</div></div>
+            <div class="b3-sep"></div>
+            <div class="b3-row"><div class="b3-key">No appointment needed</div><div class="b3-val">Walk in anytime during operating hours</div></div>
+            <div class="b3-prm"><strong>Our promise:</strong> Your sample reaches an NTEP lab within 24 hours. Results are shared privately. If TB is found, free treatment starts right away.</div>
+          </div>
+          <div class="b3-logo">
+            <div class="b3-ltxt">National TB Elimination Programme</div>
+            <div class="b3-lsub">Ministry of Health &amp; Family Welfare<br>Government of India · tbcindia.mohfw.gov.in</div>
+          </div>
+        </div>
+      </div>
+
+    </div><!-- /pt -->
+  </div><!-- /ps -->
+
+  <div class="mnav">
+    <button class="nb" id="pb" disabled>&#8249;</button>
+    <div class="nc">
+      <div class="nl" id="nl">Front · Cover</div>
+      <div class="nd" id="nd"></div>
+    </div>
+    <button class="nb" id="nb">&#8250;</button>
+  </div>
+</div><!-- /mv -->
+
+<script>
+/* ── DESKTOP ── */
+const dv   = document.getElementById('dv');
+const sw   = document.getElementById('sw');
+const sind = document.getElementById('side-ind');
+const fhint= document.getElementById('flip-hint');
+let flipped = false;
+
+function scalePamphlet() {
+  if (window.innerWidth <= 700) return;
+  sw.style.transform = '';
+  requestAnimationFrame(() => {
+    const w = sw.offsetWidth || 900;
+    const h = sw.offsetHeight || 480;
+    const s = Math.min((window.innerWidth * 0.93) / w, (window.innerHeight * 0.87) / h, 2.2);
+    sw.style.transform = 'scale(' + s + ')';
+  });
+}
+
+dv.addEventListener('click', () => {
+  flipped = !flipped;
+  dv.classList.toggle('flipped', flipped);
+  sind.textContent  = flipped ? '◦ Back Side'  : '◦ Front Side';
+  fhint.textContent = flipped ? '← Click to see the front' : 'Click anywhere to see the back →';
+});
+
+document.addEventListener('keydown', e => {
+  if ((e.key === ' ' || e.key === 'Enter') && window.innerWidth > 700) { e.preventDefault(); dv.click(); }
+});
+
+window.addEventListener('load', scalePamphlet);
+window.addEventListener('resize', scalePamphlet);
+
+/* ── MOBILE ── */
+const panels = [
+  'Front · Cover', 'Front · Symptoms', 'Front · How It Works',
+  'Back · Myths vs Facts', 'Back · Why It Matters', 'Back · Where To Go'
+];
+let cur = 0;
+const pt = document.getElementById('pt');
+const nl = document.getElementById('nl');
+const nd = document.getElementById('nd');
+const pb = document.getElementById('pb');
+const nb = document.getElementById('nb');
+
+panels.forEach((_, i) => {
+  const d = document.createElement('div');
+  d.className = 'dot' + (i === 0 ? ' on' : '');
+  d.addEventListener('click', () => go(i));
+  nd.appendChild(d);
+});
+
+function go(i) {
+  cur = i;
+  pt.style.transform = 'translateX(-' + (i * 100) + 'vw)';
+  nl.textContent = panels[i];
+  nd.querySelectorAll('.dot').forEach((d, j) => d.classList.toggle('on', j === i));
+  pb.disabled = i === 0;
+  nb.disabled = i === panels.length - 1;
+  const mps = pt.querySelectorAll('.mp');
+  if (mps[i]) mps[i].scrollTop = 0;
+}
+
+pb.addEventListener('click', () => { if (cur > 0) go(cur - 1); });
+nb.addEventListener('click', () => { if (cur < panels.length - 1) go(cur + 1); });
+
+let tx = 0, ty = 0;
+document.getElementById('mv').addEventListener('touchstart', e => {
+  tx = e.touches[0].clientX; ty = e.touches[0].clientY;
+}, { passive: true });
+document.getElementById('mv').addEventListener('touchend', e => {
+  const dx = tx - e.changedTouches[0].clientX;
+  const dy = ty - e.changedTouches[0].clientY;
+  if (Math.abs(dx) > Math.abs(dy) && Math.abs(dx) > 44) {
+    if (dx > 0 && cur < panels.length - 1) go(cur + 1);
+    else if (dx < 0 && cur > 0) go(cur - 1);
+  }
+}, { passive: true });
+
+go(0);
+</script>
+</body>
+</html>
