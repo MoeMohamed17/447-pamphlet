@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>TB Awareness Pamphlet – Delhi ACF Intervention</title>
-<link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Noto+Sans+Devanagari:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 :root{
@@ -13,6 +13,24 @@
   --white:#FFFFFF;--red:#C0392B;--green:#1E7E45;
 }
 body{font-family:'DM Sans',sans-serif;overflow:hidden;background:#D4C9BC}
+body.hi{font-family:'Noto Sans Devanagari','DM Sans',sans-serif}
+
+/* ══════════════ LANGUAGE TOGGLE ══════════════ */
+#lang-toggle{
+  position:fixed;top:14px;right:18px;z-index:300;
+  display:flex;background:rgba(28,28,28,.78);
+  backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);
+  border-radius:22px;overflow:hidden;
+  border:1px solid rgba(255,255,255,.18);
+  box-shadow:0 2px 12px rgba(0,0,0,.25);
+}
+.lt-btn{
+  padding:6px 15px;font-size:12px;font-weight:700;letter-spacing:.05em;
+  color:rgba(255,255,255,.5);cursor:pointer;border:none;
+  background:transparent;transition:background .2s,color .2s;
+  -webkit-tap-highlight-color:transparent;line-height:1;
+}
+.lt-btn.active{background:var(--saffron);color:#fff;border-radius:22px}
 
 /* ══════════════ DESKTOP ══════════════ */
 #dv{
@@ -181,7 +199,6 @@ body{font-family:'DM Sans',sans-serif;overflow:hidden;background:#D4C9BC}
 @media(max-width:700px){
   #dv{display:none}
   #mv{display:block}
-  /* remove desktop-only borders/order inside mobile panels */
   .mp .f1,.mp .f2,.mp .f3,.mp .b1,.mp .b2,.mp .b3{
     border:none;order:unset;min-height:calc(100vh - 32px - 64px);
   }
@@ -196,7 +213,6 @@ body{font-family:'DM Sans',sans-serif;overflow:hidden;background:#D4C9BC}
   .mp .b3-top{padding:18px 20px}
   .mp .b3-body{padding:22px 20px}
   .mp .b3-logo{padding:16px 20px}
-  /* nav clearance */
   .mp .f1 .pfooter,.mp .f3 .pfooter,.mp .b2 .pfooter,.mp .b3 .b3-logo{padding-bottom:72px}
   .mp .f2,.mp .b1{padding-bottom:72px}
 }
@@ -207,6 +223,12 @@ body{font-family:'DM Sans',sans-serif;overflow:hidden;background:#D4C9BC}
 </style>
 </head>
 <body>
+
+<!-- ══════════════ LANGUAGE TOGGLE ══════════════ -->
+<div id="lang-toggle">
+  <button class="lt-btn active" id="btn-en" onclick="setLang('en')">EN</button>
+  <button class="lt-btn" id="btn-hi" onclick="setLang('hi')">हि</button>
+</div>
 
 <!-- ══════════════════════════════════
      DESKTOP VIEW
@@ -220,47 +242,47 @@ body{font-family:'DM Sans',sans-serif;overflow:hidden;background:#D4C9BC}
         <div class="f3">
           <div class="f3-geo"></div>
           <div class="f3-hdr">
-            <div class="f3-hdr-lbl">Your 3-step guide</div>
-            <div class="f3-hdr-ttl">What happens when you visit the tent?</div>
+            <div class="f3-hdr-lbl" data-t="f3-hdr-lbl">Your 3-step guide</div>
+            <div class="f3-hdr-ttl" data-t="f3-hdr-ttl">What happens when you visit the tent?</div>
           </div>
           <div class="f3-body">
             <div class="steps">
-              <div class="step"><div class="step-n">1</div><div class="step-t"><strong>Walk to the tent</strong>Look for the orange screening tent in your neighbourhood, no appointment needed.</div></div>
-              <div class="step"><div class="step-n">2</div><div class="step-t"><strong>Provide a sputum sample</strong>A trained health worker guides you. It takes a few minutes and is completely painless.</div></div>
-              <div class="step"><div class="step-n">3</div><div class="step-t"><strong>Receive your results</strong>NTEP contacts you directly and privately. If TB is detected, free treatment begins immediately.</div></div>
+              <div class="step"><div class="step-n">1</div><div class="step-t" data-t="step1"><strong>Walk to the tent</strong>Look for the orange screening tent in your neighbourhood, no appointment needed.</div></div>
+              <div class="step"><div class="step-n">2</div><div class="step-t" data-t="step2"><strong>Provide a sputum sample</strong>A trained health worker guides you. It takes a few minutes and is completely painless.</div></div>
+              <div class="step"><div class="step-n">3</div><div class="step-t" data-t="step3"><strong>Receive your results</strong>NTEP contacts you directly and privately. If TB is detected, free treatment begins immediately.</div></div>
             </div>
             <div class="f3-rule"></div>
             <div class="f3-free">
-              <div class="f3-free-lbl">Covered under</div>
-              <div class="f3-free-val">National TB Elimination Programme — Testing &amp; Treatment are 100% Free</div>
+              <div class="f3-free-lbl" data-t="f3-free-lbl">Covered under</div>
+              <div class="f3-free-val" data-t="f3-free-val">National TB Elimination Programme — Testing &amp; Treatment are 100% Free</div>
             </div>
-            <div class="f3-conf">All information you share is <strong>strictly confidential</strong>. Your privacy is protected throughout.</div>
+            <div class="f3-conf" data-t="f3-conf">All information you share is <strong>strictly confidential</strong>. Your privacy is protected throughout.</div>
           </div>
-          <div class="pfooter">Samples are transported to NTEP labs within 24 hours. GeneXpert analysis ensures fast, accurate results.</div>
+          <div class="pfooter" data-t="f3-footer">Samples are transported to NTEP labs within 24 hours. GeneXpert analysis ensures fast, accurate results.</div>
         </div>
         <div class="f2">
-          <div class="f2-title">Know the signs of TB</div>
-          <div class="f2-intro">Tuberculosis (TB) is serious but <strong>fully curable</strong>. Many people don't know they have it, which is why early testing matters. If you or a family member have any of these symptoms for <strong>2 weeks or more</strong>, get tested today.</div>
+          <div class="f2-title" data-t="f2-title">Know the signs of TB</div>
+          <div class="f2-intro" data-t="f2-intro">Tuberculosis (TB) is serious but <strong>fully curable</strong>. Many people don't know they have it, which is why early testing matters. If you or a family member have any of these symptoms for <strong>2 weeks or more</strong>, get tested today.</div>
           <div class="sym-grid">
-            <div class="sym-card"><div class="sym-icon">🫁</div><div class="sym-name">Persistent Cough</div><div class="sym-detail">Lasting 2+ weeks</div></div>
-            <div class="sym-card"><div class="sym-icon">🌡️</div><div class="sym-name">Fever &amp; Night Sweats</div><div class="sym-detail">Low-grade fever, sweating at night</div></div>
-            <div class="sym-card"><div class="sym-icon">⚖️</div><div class="sym-name">Unexplained Weight Loss</div><div class="sym-detail">Losing weight without trying</div></div>
-            <div class="sym-card"><div class="sym-icon">😮‍💨</div><div class="sym-name">Fatigue &amp; Weakness</div><div class="sym-detail">Tired even after a full night's sleep</div></div>
+            <div class="sym-card"><div class="sym-icon">🫁</div><div class="sym-name" data-t="sym1-name">Persistent Cough</div><div class="sym-detail" data-t="sym1-detail">Lasting 2+ weeks</div></div>
+            <div class="sym-card"><div class="sym-icon">🌡️</div><div class="sym-name" data-t="sym2-name">Fever &amp; Night Sweats</div><div class="sym-detail" data-t="sym2-detail">Low-grade fever, sweating at night</div></div>
+            <div class="sym-card"><div class="sym-icon">⚖️</div><div class="sym-name" data-t="sym3-name">Unexplained Weight Loss</div><div class="sym-detail" data-t="sym3-detail">Losing weight without trying</div></div>
+            <div class="sym-card"><div class="sym-icon">😮‍💨</div><div class="sym-name" data-t="sym4-name">Fatigue &amp; Weakness</div><div class="sym-detail" data-t="sym4-detail">Tired even after a full night's sleep</div></div>
           </div>
-          <div class="f2-warn"><strong>You don't need symptoms to be tested.</strong> TB can be present before you feel unwell. Getting tested now protects you <em>and</em> everyone you love.</div>
+          <div class="f2-warn" data-t="f2-warn"><strong>You don't need symptoms to be tested.</strong> TB can be present before you feel unwell. Getting tested now protects you <em>and</em> everyone you love.</div>
         </div>
         <div class="f1">
-          <div class="topbar"><span>Govt. of India</span><span class="ntep-badge">NTEP</span></div>
+          <div class="topbar"><span data-t="topbar-gov">Govt. of India</span><span class="ntep-badge">NTEP</span></div>
           <div class="f1-body">
-            <div class="f1-eye">TB Awareness &amp; Screening</div>
-            <div class="f1-hl">Protect<br>your family.<br><em>Know your<br>status.</em></div>
+            <div class="f1-eye" data-t="f1-eye">TB Awareness &amp; Screening</div>
+            <div class="f1-hl" data-t="f1-hl">Protect<br>your family.<br><em>Know your<br>status.</em></div>
             <div class="f1-rule"></div>
-            <div class="f1-sub">Free TB sputum screening is available <strong>right in your community</strong>. Visit the orange tent today — no appointment, no cost.</div>
-            <div class="f1-free">✓ 100% Free &nbsp;·&nbsp; ✓ Confidential</div>
-            <div class="f1-cta">Find your nearest tent →</div>
+            <div class="f1-sub" data-t="f1-sub">Free TB sputum screening is available <strong>right in your community</strong>. Visit the orange tent today — no appointment, no cost.</div>
+            <div class="f1-free" data-t="f1-free">✓ 100% Free &nbsp;·&nbsp; ✓ Confidential</div>
+            <div class="f1-cta" data-t="f1-cta">Find your nearest tent →</div>
           </div>
           <div class="f1-geo"></div><div class="f1-geo2"></div>
-          <div class="pfooter">TB is curable. Early detection saves lives and protects your family.<br>Delhi Active Case Finding Initiative · Shahdara &amp; East Delhi</div>
+          <div class="pfooter" data-t="f1-footer">TB is curable. Early detection saves lives and protects your family.<br>Delhi Active Case Finding Initiative · Shahdara &amp; East Delhi</div>
         </div>
       </div>
     </div>
@@ -269,45 +291,45 @@ body{font-family:'DM Sans',sans-serif;overflow:hidden;background:#D4C9BC}
     <div id="bf">
       <div class="pamphlet">
         <div class="b1">
-          <div class="b1-lbl">Let's clear things up</div>
-          <div class="b1-title">TB Myths vs. Facts</div>
+          <div class="b1-lbl" data-t="b1-lbl">Let's clear things up</div>
+          <div class="b1-title" data-t="b1-title">TB Myths vs. Facts</div>
           <div class="myths">
-            <div class="myth"><div class="mtag m">✗ Myth</div><div class="mtext">"Only poor or weak people get TB."</div><div class="mdiv"></div><div class="mtag f">✓ Fact</div><div class="mtext">TB is a bacterial infection, anyone can get it. Actor <strong>Amitabh Bachchan</strong> was diagnosed with TB and made a full recovery after treatment.</div></div>
-            <div class="myth"><div class="mtag m">✗ Myth</div><div class="mtext">"TB testing is expensive and far away."</div><div class="mdiv"></div><div class="mtag f">✓ Fact</div><div class="mtext">Free screening is in <strong>your neighbourhood</strong>. No hospital trip, just walk to the orange tent.</div></div>
-            <div class="myth"><div class="mtag m">✗ Myth</div><div class="mtext">"If I test positive, everyone will find out."</div><div class="mdiv"></div><div class="mtag f">✓ Fact</div><div class="mtext">Results are <strong>strictly confidential</strong>. NTEP contacts only you, privately. You decide what to share.</div></div>
+            <div class="myth"><div class="mtag m" data-t="myth-tag">✗ Myth</div><div class="mtext" data-t="myth1-myth">"Only poor or weak people get TB."</div><div class="mdiv"></div><div class="mtag f" data-t="fact-tag">✓ Fact</div><div class="mtext" data-t="myth1-fact">TB is a bacterial infection, anyone can get it. Actor <strong>Amitabh Bachchan</strong> was diagnosed with TB and made a full recovery after treatment.</div></div>
+            <div class="myth"><div class="mtag m" data-t="myth-tag">✗ Myth</div><div class="mtext" data-t="myth2-myth">"TB testing is expensive and far away."</div><div class="mdiv"></div><div class="mtag f" data-t="fact-tag">✓ Fact</div><div class="mtext" data-t="myth2-fact">Free screening is in <strong>your neighbourhood</strong>. No hospital trip, just walk to the orange tent.</div></div>
+            <div class="myth"><div class="mtag m" data-t="myth-tag">✗ Myth</div><div class="mtext" data-t="myth3-myth">"If I test positive, everyone will find out."</div><div class="mdiv"></div><div class="mtag f" data-t="fact-tag">✓ Fact</div><div class="mtext" data-t="myth3-fact">Results are <strong>strictly confidential</strong>. NTEP contacts only you, privately. You decide what to share.</div></div>
           </div>
         </div>
         <div class="b2">
           <div class="b2-hero">
-            <div class="b2-eye">A public message</div>
-            <div class="b2-quote">"TB is a disease. It can be treated. Don't hide it — fight it."</div>
-            <div class="b2-attr">— Inspired by Amitabh Bachchan, TB survivor &amp; public advocate</div>
+            <div class="b2-eye" data-t="b2-eye">A public message</div>
+            <div class="b2-quote" data-t="b2-quote">"TB is a disease. It can be treated. Don't hide it — fight it."</div>
+            <div class="b2-attr" data-t="b2-attr">— Inspired by Amitabh Bachchan, TB survivor &amp; public advocate</div>
           </div>
           <div class="b2-body">
-            <div class="b2-slbl">Why testing matters</div>
+            <div class="b2-slbl" data-t="b2-slbl">Why testing matters</div>
             <div class="b2-stats">
-              <div class="b2-stat"><div class="b2-snum">55</div><div class="b2-sdsc">Average days between symptoms &amp; treatment in India</div></div>
-              <div class="b2-stat"><div class="b2-snum">80%</div><div class="b2-sdsc">Treatment success rate when TB is caught early</div></div>
+              <div class="b2-stat"><div class="b2-snum">55</div><div class="b2-sdsc" data-t="b2-sdsc1">Average days between symptoms &amp; treatment in India</div></div>
+              <div class="b2-stat"><div class="b2-snum">80%</div><div class="b2-sdsc" data-t="b2-sdsc2">Treatment success rate when TB is caught early</div></div>
             </div>
-            <div class="b2-txt">Every day without a diagnosis means TB can spread to those around you. The sooner you test, the sooner you protect the people you love.</div>
+            <div class="b2-txt" data-t="b2-txt">Every day without a diagnosis means TB can spread to those around you. The sooner you test, the sooner you protect the people you love.</div>
           </div>
-          <div class="pfooter">Based on India's National TB Prevalence Survey 2019–2021 and WHO Global TB Report 2024.</div>
+          <div class="pfooter" data-t="b2-footer">Based on India's National TB Prevalence Survey 2019–2021 and WHO Global TB Report 2024.</div>
         </div>
         <div class="b3">
-          <div class="b3-top"><div class="b3-tlbl">Find us</div><div class="b3-tttl">Screening tent locations &amp; schedule</div></div>
+          <div class="b3-top"><div class="b3-tlbl" data-t="b3-tlbl">Find us</div><div class="b3-tttl" data-t="b3-tttl">Screening tent locations &amp; schedule</div></div>
           <div class="b3-body">
-            <div class="b3-row"><div class="b3-key">Pilot Zone</div><div class="b3-val">  East Delhi</div></div>
+            <div class="b3-row"><div class="b3-key" data-t="b3-key1">Pilot Zone</div><div class="b3-val" data-t="b3-val1">East Delhi</div></div>
             <div class="b3-sep"></div>
-            <div class="b3-row"><div class="b3-key">Tent Locations</div><div class="b3-val">Open spaces, market areas &amp; community gathering points near your home</div></div>
+            <div class="b3-row"><div class="b3-key" data-t="b3-key2">Tent Locations</div><div class="b3-val" data-t="b3-val2">Open spaces, market areas &amp; community gathering points near your home</div></div>
             <div class="b3-sep"></div>
-            <div class="b3-row"><div class="b3-key">Hours</div><div class="b3-val">Mon – Sat · 8:00 AM – 5:00 PM</div></div>
+            <div class="b3-row"><div class="b3-key" data-t="b3-key3">Hours</div><div class="b3-val" data-t="b3-val3">Mon – Sat · 8:00 AM – 5:00 PM</div></div>
             <div class="b3-sep"></div>
-            <div class="b3-row"><div class="b3-key">No appointment needed</div><div class="b3-val">Walk in anytime during operating hours</div></div>
-            <div class="b3-prm"><strong>Our promise:</strong> Your sample reaches an NTEP lab within 24 hours. Results are shared privately. If TB is found, free treatment starts right away.</div>
+            <div class="b3-row"><div class="b3-key" data-t="b3-key4">No appointment needed</div><div class="b3-val" data-t="b3-val4">Walk in anytime during operating hours</div></div>
+            <div class="b3-prm" data-t="b3-prm"><strong>Our promise:</strong> Your sample reaches an NTEP lab within 24 hours. Results are shared privately. If TB is found, free treatment starts right away.</div>
           </div>
           <div class="b3-logo">
-            <div class="b3-ltxt">National TB Elimination Programme</div>
-            <div class="b3-lsub">Ministry of Health &amp; Family Welfare<br>Government of India</div>
+            <div class="b3-ltxt" data-t="b3-ltxt">National TB Elimination Programme</div>
+            <div class="b3-lsub" data-t="b3-lsub">Ministry of Health &amp; Family Welfare<br>Government of India</div>
           </div>
         </div>
       </div>
@@ -327,111 +349,111 @@ body{font-family:'DM Sans',sans-serif;overflow:hidden;background:#D4C9BC}
 
       <!-- Panel 1: Cover -->
       <div class="mp">
-        <div class="mpl"><span>Front Side · Trifold</span><span class="sb">Cover</span></div>
+        <div class="mpl"><span data-t="mpl-front">Front Side · Trifold</span><span class="sb" data-t="mpl-cover">Cover</span></div>
         <div class="f1">
-          <div class="topbar"><span>Govt. of India</span><span class="ntep-badge">NTEP</span></div>
+          <div class="topbar"><span data-t="topbar-gov">Govt. of India</span><span class="ntep-badge">NTEP</span></div>
           <div class="f1-body">
-            <div class="f1-eye">TB Awareness &amp; Screening</div>
-            <div class="f1-hl">Protect<br>your family.<br><em>Know your<br>status.</em></div>
+            <div class="f1-eye" data-t="f1-eye">TB Awareness &amp; Screening</div>
+            <div class="f1-hl" data-t="f1-hl">Protect<br>your family.<br><em>Know your<br>status.</em></div>
             <div class="f1-rule"></div>
-            <div class="f1-sub">Free TB sputum screening is available <strong>right in your community</strong>. Visit the orange tent today — no appointment, no cost.</div>
-            <div class="f1-free">✓ 100% Free &nbsp;·&nbsp; ✓ Confidential</div>
-            <div class="f1-cta">Find your nearest tent →</div>
+            <div class="f1-sub" data-t="f1-sub">Free TB sputum screening is available <strong>right in your community</strong>. Visit the orange tent today — no appointment, no cost.</div>
+            <div class="f1-free" data-t="f1-free">✓ 100% Free &nbsp;·&nbsp; ✓ Confidential</div>
+            <div class="f1-cta" data-t="f1-cta">Find your nearest tent →</div>
           </div>
           <div class="f1-geo"></div><div class="f1-geo2"></div>
-          <div class="pfooter">TB is curable. Early detection saves lives and protects your family.<br>Delhi Active Case Finding Initiative · Shahdara &amp; East Delhi</div>
+          <div class="pfooter" data-t="f1-footer">TB is curable. Early detection saves lives and protects your family.<br>Delhi Active Case Finding Initiative · Shahdara &amp; East Delhi</div>
         </div>
       </div>
 
       <!-- Panel 2: Symptoms -->
       <div class="mp">
-        <div class="mpl"><span>Front Side · Trifold</span><span class="sb">Symptoms</span></div>
+        <div class="mpl"><span data-t="mpl-front">Front Side · Trifold</span><span class="sb" data-t="mpl-symptoms">Symptoms</span></div>
         <div class="f2">
-          <div class="f2-title">Know the signs of TB</div>
-          <div class="f2-intro">Tuberculosis (TB) is serious but <strong>fully curable</strong>. Many people don't know they have it, which is why early testing matters. If you or a family member have any of these symptoms for <strong>2 weeks or more</strong>, get tested today.</div>
+          <div class="f2-title" data-t="f2-title">Know the signs of TB</div>
+          <div class="f2-intro" data-t="f2-intro">Tuberculosis (TB) is serious but <strong>fully curable</strong>. Many people don't know they have it, which is why early testing matters. If you or a family member have any of these symptoms for <strong>2 weeks or more</strong>, get tested today.</div>
           <div class="sym-grid">
-            <div class="sym-card"><div class="sym-icon">🫁</div><div class="sym-name">Persistent Cough</div><div class="sym-detail">Lasting 2+ weeks</div></div>
-            <div class="sym-card"><div class="sym-icon">🌡️</div><div class="sym-name">Fever &amp; Night Sweats</div><div class="sym-detail">Low-grade fever, sweating at night</div></div>
-            <div class="sym-card"><div class="sym-icon">⚖️</div><div class="sym-name">Unexplained Weight Loss</div><div class="sym-detail">Losing weight without trying</div></div>
-            <div class="sym-card"><div class="sym-icon">😮‍💨</div><div class="sym-name">Fatigue &amp; Weakness</div><div class="sym-detail">Tired even after a full night's sleep</div></div>
+            <div class="sym-card"><div class="sym-icon">🫁</div><div class="sym-name" data-t="sym1-name">Persistent Cough</div><div class="sym-detail" data-t="sym1-detail">Lasting 2+ weeks</div></div>
+            <div class="sym-card"><div class="sym-icon">🌡️</div><div class="sym-name" data-t="sym2-name">Fever &amp; Night Sweats</div><div class="sym-detail" data-t="sym2-detail">Low-grade fever, sweating at night</div></div>
+            <div class="sym-card"><div class="sym-icon">⚖️</div><div class="sym-name" data-t="sym3-name">Unexplained Weight Loss</div><div class="sym-detail" data-t="sym3-detail">Losing weight without trying</div></div>
+            <div class="sym-card"><div class="sym-icon">😮‍💨</div><div class="sym-name" data-t="sym4-name">Fatigue &amp; Weakness</div><div class="sym-detail" data-t="sym4-detail">Tired even after a full night's sleep</div></div>
           </div>
-          <div class="f2-warn"><strong>You don't need symptoms to be tested.</strong> TB can be present before you feel unwell. Getting tested now protects you <em>and</em> everyone you love.</div>
+          <div class="f2-warn" data-t="f2-warn"><strong>You don't need symptoms to be tested.</strong> TB can be present before you feel unwell. Getting tested now protects you <em>and</em> everyone you love.</div>
         </div>
       </div>
 
       <!-- Panel 3: How It Works -->
       <div class="mp">
-        <div class="mpl"><span>Front Side · Trifold</span><span class="sb">How It Works</span></div>
+        <div class="mpl"><span data-t="mpl-front">Front Side · Trifold</span><span class="sb" data-t="mpl-howitworks">How It Works</span></div>
         <div class="f3">
           <div class="f3-geo"></div>
-          <div class="f3-hdr"><div class="f3-hdr-lbl">Your 3-step guide</div><div class="f3-hdr-ttl">What happens when you visit the tent?</div></div>
+          <div class="f3-hdr"><div class="f3-hdr-lbl" data-t="f3-hdr-lbl">Your 3-step guide</div><div class="f3-hdr-ttl" data-t="f3-hdr-ttl">What happens when you visit the tent?</div></div>
           <div class="f3-body">
             <div class="steps">
-              <div class="step"><div class="step-n">1</div><div class="step-t"><strong>Walk to the tent</strong>Look for the orange screening tent in your neighbourhood, no appointment needed.</div></div>
-              <div class="step"><div class="step-n">2</div><div class="step-t"><strong>Provide a sputum sample</strong>A trained health worker guides you. It takes a few minutes and is completely painless.</div></div>
-              <div class="step"><div class="step-n">3</div><div class="step-t"><strong>Receive your results</strong>NTEP contacts you directly and privately. If TB is detected, free treatment begins immediately.</div></div>
+              <div class="step"><div class="step-n">1</div><div class="step-t" data-t="step1"><strong>Walk to the tent</strong>Look for the orange screening tent in your neighbourhood, no appointment needed.</div></div>
+              <div class="step"><div class="step-n">2</div><div class="step-t" data-t="step2"><strong>Provide a sputum sample</strong>A trained health worker guides you. It takes a few minutes and is completely painless.</div></div>
+              <div class="step"><div class="step-n">3</div><div class="step-t" data-t="step3"><strong>Receive your results</strong>NTEP contacts you directly and privately. If TB is detected, free treatment begins immediately.</div></div>
             </div>
             <div class="f3-rule"></div>
-            <div class="f3-free"><div class="f3-free-lbl">Covered under</div><div class="f3-free-val">National TB Elimination Programme — Testing &amp; Treatment are 100% Free</div></div>
-            <div class="f3-conf">All information you share is <strong>strictly confidential</strong>. Your privacy is protected throughout.</div>
+            <div class="f3-free"><div class="f3-free-lbl" data-t="f3-free-lbl">Covered under</div><div class="f3-free-val" data-t="f3-free-val">National TB Elimination Programme — Testing &amp; Treatment are 100% Free</div></div>
+            <div class="f3-conf" data-t="f3-conf">All information you share is <strong>strictly confidential</strong>. Your privacy is protected throughout.</div>
           </div>
-          <div class="pfooter">Samples are transported to NTEP labs within 24 hours. GeneXpert analysis ensures fast, accurate results.</div>
+          <div class="pfooter" data-t="f3-footer">Samples are transported to NTEP labs within 24 hours. GeneXpert analysis ensures fast, accurate results.</div>
         </div>
       </div>
 
       <!-- Panel 4: Myths vs Facts -->
       <div class="mp">
-        <div class="mpl"><span>Back Side · Trifold</span><span class="sb back">Myths vs Facts</span></div>
+        <div class="mpl"><span data-t="mpl-back">Back Side · Trifold</span><span class="sb back" data-t="mpl-myths">Myths vs Facts</span></div>
         <div class="b1">
-          <div class="b1-lbl">Let's clear things up</div>
-          <div class="b1-title">TB Myths vs. Facts</div>
+          <div class="b1-lbl" data-t="b1-lbl">Let's clear things up</div>
+          <div class="b1-title" data-t="b1-title">TB Myths vs. Facts</div>
           <div class="myths">
-            <div class="myth"><div class="mtag m">✗ Myth</div><div class="mtext">"Only poor or weak people get TB."</div><div class="mdiv"></div><div class="mtag f">✓ Fact</div><div class="mtext">TB is a bacterial infection, anyone can get it. Actor <strong>Amitabh Bachchan</strong> was diagnosed with TB and made a full recovery after treatment.</div></div>
-            <div class="myth"><div class="mtag m">✗ Myth</div><div class="mtext">"TB testing is expensive and far away."</div><div class="mdiv"></div><div class="mtag f">✓ Fact</div><div class="mtext">Free screening is in <strong>your neighbourhood</strong>. No hospital trip, just walk to the orange tent.</div></div>
-            <div class="myth"><div class="mtag m">✗ Myth</div><div class="mtext">"If I test positive, everyone will find out."</div><div class="mdiv"></div><div class="mtag f">✓ Fact</div><div class="mtext">Results are <strong>strictly confidential</strong>. NTEP contacts only you, privately. You decide what to share.</div></div>
+            <div class="myth"><div class="mtag m" data-t="myth-tag">✗ Myth</div><div class="mtext" data-t="myth1-myth">"Only poor or weak people get TB."</div><div class="mdiv"></div><div class="mtag f" data-t="fact-tag">✓ Fact</div><div class="mtext" data-t="myth1-fact">TB is a bacterial infection, anyone can get it. Actor <strong>Amitabh Bachchan</strong> was diagnosed with TB and made a full recovery after treatment.</div></div>
+            <div class="myth"><div class="mtag m" data-t="myth-tag">✗ Myth</div><div class="mtext" data-t="myth2-myth">"TB testing is expensive and far away."</div><div class="mdiv"></div><div class="mtag f" data-t="fact-tag">✓ Fact</div><div class="mtext" data-t="myth2-fact">Free screening is in <strong>your neighbourhood</strong>. No hospital trip, just walk to the orange tent.</div></div>
+            <div class="myth"><div class="mtag m" data-t="myth-tag">✗ Myth</div><div class="mtext" data-t="myth3-myth">"If I test positive, everyone will find out."</div><div class="mdiv"></div><div class="mtag f" data-t="fact-tag">✓ Fact</div><div class="mtext" data-t="myth3-fact">Results are <strong>strictly confidential</strong>. NTEP contacts only you, privately. You decide what to share.</div></div>
           </div>
         </div>
       </div>
 
       <!-- Panel 5: Why It Matters -->
       <div class="mp">
-        <div class="mpl"><span>Back Side · Trifold</span><span class="sb back">Why It Matters</span></div>
+        <div class="mpl"><span data-t="mpl-back">Back Side · Trifold</span><span class="sb back" data-t="mpl-why">Why It Matters</span></div>
         <div class="b2">
           <div class="b2-hero">
-            <div class="b2-eye">A public message</div>
-            <div class="b2-quote">"TB is a disease. It can be treated. Don't hide it — fight it."</div>
-            <div class="b2-attr">— Inspired by Amitabh Bachchan, TB survivor &amp; public advocate</div>
+            <div class="b2-eye" data-t="b2-eye">A public message</div>
+            <div class="b2-quote" data-t="b2-quote">"TB is a disease. It can be treated. Don't hide it — fight it."</div>
+            <div class="b2-attr" data-t="b2-attr">— Inspired by Amitabh Bachchan, TB survivor &amp; public advocate</div>
           </div>
           <div class="b2-body">
-            <div class="b2-slbl">Why testing matters</div>
+            <div class="b2-slbl" data-t="b2-slbl">Why testing matters</div>
             <div class="b2-stats">
-              <div class="b2-stat"><div class="b2-snum">55</div><div class="b2-sdsc">Average days between symptoms &amp; treatment in India</div></div>
-              <div class="b2-stat"><div class="b2-snum">80%</div><div class="b2-sdsc">Treatment success rate when TB is caught early</div></div>
+              <div class="b2-stat"><div class="b2-snum">55</div><div class="b2-sdsc" data-t="b2-sdsc1">Average days between symptoms &amp; treatment in India</div></div>
+              <div class="b2-stat"><div class="b2-snum">80%</div><div class="b2-sdsc" data-t="b2-sdsc2">Treatment success rate when TB is caught early</div></div>
             </div>
-            <div class="b2-txt">Every day without a diagnosis means TB can spread to those around you. The sooner you test, the sooner you protect the people you love.</div>
+            <div class="b2-txt" data-t="b2-txt">Every day without a diagnosis means TB can spread to those around you. The sooner you test, the sooner you protect the people you love.</div>
           </div>
-          <div class="pfooter">Based on India's National TB Prevalence Survey 2019–2021 and WHO Global TB Report 2024.</div>
+          <div class="pfooter" data-t="b2-footer">Based on India's National TB Prevalence Survey 2019–2021 and WHO Global TB Report 2024.</div>
         </div>
       </div>
 
       <!-- Panel 6: Where To Go -->
       <div class="mp">
-        <div class="mpl"><span>Back Side · Trifold</span><span class="sb back">Where To Go</span></div>
+        <div class="mpl"><span data-t="mpl-back">Back Side · Trifold</span><span class="sb back" data-t="mpl-where">Where To Go</span></div>
         <div class="b3">
-          <div class="b3-top"><div class="b3-tlbl">Find us</div><div class="b3-tttl">Screening tent locations &amp; schedule</div></div>
+          <div class="b3-top"><div class="b3-tlbl" data-t="b3-tlbl">Find us</div><div class="b3-tttl" data-t="b3-tttl">Screening tent locations &amp; schedule</div></div>
           <div class="b3-body">
-            <div class="b3-row"><div class="b3-key">Pilot Zone</div><div class="b3-val">East Delhi</div></div>
+            <div class="b3-row"><div class="b3-key" data-t="b3-key1">Pilot Zone</div><div class="b3-val" data-t="b3-val1">East Delhi</div></div>
             <div class="b3-sep"></div>
-            <div class="b3-row"><div class="b3-key">Tent Locations</div><div class="b3-val">Open spaces, market areas &amp; community gathering points near your home</div></div>
+            <div class="b3-row"><div class="b3-key" data-t="b3-key2">Tent Locations</div><div class="b3-val" data-t="b3-val2">Open spaces, market areas &amp; community gathering points near your home</div></div>
             <div class="b3-sep"></div>
-            <div class="b3-row"><div class="b3-key">Hours</div><div class="b3-val">Mon – Sat · 8:00 AM – 5:00 PM</div></div>
+            <div class="b3-row"><div class="b3-key" data-t="b3-key3">Hours</div><div class="b3-val" data-t="b3-val3">Mon – Sat · 8:00 AM – 5:00 PM</div></div>
             <div class="b3-sep"></div>
-            <div class="b3-row"><div class="b3-key">No appointment needed</div><div class="b3-val">Walk in anytime during operating hours</div></div>
-            <div class="b3-prm"><strong>Our promise:</strong> Your sample reaches an NTEP lab within 24 hours. Results are shared privately. If TB is found, free treatment starts right away.</div>
+            <div class="b3-row"><div class="b3-key" data-t="b3-key4">No appointment needed</div><div class="b3-val" data-t="b3-val4">Walk in anytime during operating hours</div></div>
+            <div class="b3-prm" data-t="b3-prm"><strong>Our promise:</strong> Your sample reaches an NTEP lab within 24 hours. Results are shared privately. If TB is found, free treatment starts right away.</div>
           </div>
           <div class="b3-logo">
-            <div class="b3-ltxt">National TB Elimination Programme</div>
-            <div class="b3-lsub">Ministry of Health &amp; Family Welfare<br>Government of India</div>
+            <div class="b3-ltxt" data-t="b3-ltxt">National TB Elimination Programme</div>
+            <div class="b3-lsub" data-t="b3-lsub">Ministry of Health &amp; Family Welfare<br>Government of India</div>
           </div>
         </div>
       </div>
@@ -450,7 +472,204 @@ body{font-family:'DM Sans',sans-serif;overflow:hidden;background:#D4C9BC}
 </div><!-- /mv -->
 
 <script>
-/* ── DESKTOP ── */
+/* ══════════════ TRANSLATIONS ══════════════ */
+const T = {
+  en: {
+    /* Desktop / Mobile shared indicators */
+    'side-front': '◦ Front Side',
+    'side-back':  '◦ Back Side',
+    'hint-back':  'Click anywhere to see the back →',
+    'hint-front': '← Click to see the front',
+    /* Mobile nav labels */
+    'nav-labels': ['Front · Cover','Front · Symptoms','Front · How It Works','Back · Myths vs Facts','Back · Why It Matters','Back · Where To Go'],
+    /* Panel bar labels */
+    'mpl-front':      'Front Side · Trifold',
+    'mpl-back':       'Back Side · Trifold',
+    'mpl-cover':      'Cover',
+    'mpl-symptoms':   'Symptoms',
+    'mpl-howitworks': 'How It Works',
+    'mpl-myths':      'Myths vs Facts',
+    'mpl-why':        'Why It Matters',
+    'mpl-where':      'Where To Go',
+    /* F1 Cover */
+    'topbar-gov': 'Govt. of India',
+    'f1-eye':     'TB Awareness &amp; Screening',
+    'f1-hl':      'Protect<br>your family.<br><em>Know your<br>status.</em>',
+    'f1-sub':     'Free TB sputum screening is available <strong>right in your community</strong>. Visit the orange tent today — no appointment, no cost.',
+    'f1-free':    '✓ 100% Free &nbsp;·&nbsp; ✓ Confidential',
+    'f1-cta':     'Find your nearest tent →',
+    'f1-footer':  'TB is curable. Early detection saves lives and protects your family.<br>Delhi Active Case Finding Initiative · Shahdara &amp; East Delhi',
+    /* F2 Symptoms */
+    'f2-title':    'Know the signs of TB',
+    'f2-intro':    'Tuberculosis (TB) is serious but <strong>fully curable</strong>. Many people don\'t know they have it, which is why early testing matters. If you or a family member have any of these symptoms for <strong>2 weeks or more</strong>, get tested today.',
+    'sym1-name':   'Persistent Cough',
+    'sym1-detail': 'Lasting 2+ weeks',
+    'sym2-name':   'Fever &amp; Night Sweats',
+    'sym2-detail': 'Low-grade fever, sweating at night',
+    'sym3-name':   'Unexplained Weight Loss',
+    'sym3-detail': 'Losing weight without trying',
+    'sym4-name':   'Fatigue &amp; Weakness',
+    'sym4-detail': 'Tired even after a full night\'s sleep',
+    'f2-warn':     '<strong>You don\'t need symptoms to be tested.</strong> TB can be present before you feel unwell. Getting tested now protects you <em>and</em> everyone you love.',
+    /* F3 How It Works */
+    'f3-hdr-lbl':  'Your 3-step guide',
+    'f3-hdr-ttl':  'What happens when you visit the tent?',
+    'step1':       '<strong>Walk to the tent</strong>Look for the orange screening tent in your neighbourhood, no appointment needed.',
+    'step2':       '<strong>Provide a sputum sample</strong>A trained health worker guides you. It takes a few minutes and is completely painless.',
+    'step3':       '<strong>Receive your results</strong>NTEP contacts you directly and privately. If TB is detected, free treatment begins immediately.',
+    'f3-free-lbl': 'Covered under',
+    'f3-free-val': 'National TB Elimination Programme — Testing &amp; Treatment are 100% Free',
+    'f3-conf':     'All information you share is <strong>strictly confidential</strong>. Your privacy is protected throughout.',
+    'f3-footer':   'Samples are transported to NTEP labs within 24 hours. GeneXpert analysis ensures fast, accurate results.',
+    /* B1 Myths */
+    'b1-lbl':    'Let\'s clear things up',
+    'b1-title':  'TB Myths vs. Facts',
+    'myth-tag':  '✗ Myth',
+    'fact-tag':  '✓ Fact',
+    'myth1-myth': '"Only poor or weak people get TB."',
+    'myth1-fact': 'TB is a bacterial infection, anyone can get it. Actor <strong>Amitabh Bachchan</strong> was diagnosed with TB and made a full recovery after treatment.',
+    'myth2-myth': '"TB testing is expensive and far away."',
+    'myth2-fact': 'Free screening is in <strong>your neighbourhood</strong>. No hospital trip, just walk to the orange tent.',
+    'myth3-myth': '"If I test positive, everyone will find out."',
+    'myth3-fact': 'Results are <strong>strictly confidential</strong>. NTEP contacts only you, privately. You decide what to share.',
+    /* B2 Why It Matters */
+    'b2-eye':   'A public message',
+    'b2-quote': '"TB is a disease. It can be treated. Don\'t hide it — fight it."',
+    'b2-attr':  '— Inspired by Amitabh Bachchan, TB survivor &amp; public advocate',
+    'b2-slbl':  'Why testing matters',
+    'b2-sdsc1': 'Average days between symptoms &amp; treatment in India',
+    'b2-sdsc2': 'Treatment success rate when TB is caught early',
+    'b2-txt':   'Every day without a diagnosis means TB can spread to those around you. The sooner you test, the sooner you protect the people you love.',
+    'b2-footer':'Based on India\'s National TB Prevalence Survey 2019–2021 and WHO Global TB Report 2024.',
+    /* B3 Where To Go */
+    'b3-tlbl':  'Find us',
+    'b3-tttl':  'Screening tent locations &amp; schedule',
+    'b3-key1':  'Pilot Zone',
+    'b3-val1':  'East Delhi',
+    'b3-key2':  'Tent Locations',
+    'b3-val2':  'Open spaces, market areas &amp; community gathering points near your home',
+    'b3-key3':  'Hours',
+    'b3-val3':  'Mon – Sat · 8:00 AM – 5:00 PM',
+    'b3-key4':  'No appointment needed',
+    'b3-val4':  'Walk in anytime during operating hours',
+    'b3-prm':   '<strong>Our promise:</strong> Your sample reaches an NTEP lab within 24 hours. Results are shared privately. If TB is found, free treatment starts right away.',
+    'b3-ltxt':  'National TB Elimination Programme',
+    'b3-lsub':  'Ministry of Health &amp; Family Welfare<br>Government of India',
+  },
+  hi: {
+    /* Desktop / Mobile shared indicators */
+    'side-front': '◦ सामने की तरफ',
+    'side-back':  '◦ पीछे की तरफ',
+    'hint-back':  'पीछे देखने के लिए कहीं भी क्लिक करें →',
+    'hint-front': '← सामने देखने के लिए क्लिक करें',
+    /* Mobile nav labels */
+    'nav-labels': ['सामने · कवर','सामने · लक्षण','सामने · कैसे काम करता है','पीछे · मिथक बनाम तथ्य','पीछे · क्यों जरूरी है','पीछे · कहाँ जाएं'],
+    /* Panel bar labels */
+    'mpl-front':      'सामने की तरफ · तिकोना',
+    'mpl-back':       'पीछे की तरफ · तिकोना',
+    'mpl-cover':      'कवर',
+    'mpl-symptoms':   'लक्षण',
+    'mpl-howitworks': 'कैसे काम करता है',
+    'mpl-myths':      'मिथक बनाम तथ्य',
+    'mpl-why':        'क्यों जरूरी है',
+    'mpl-where':      'कहाँ जाएं',
+    /* F1 Cover */
+    'topbar-gov': 'भारत सरकार',
+    'f1-eye':     'टीबी जागरूकता और जांच',
+    'f1-hl':      'अपने परिवार<br>को बचाएं।<br><em>अपनी स्थिति<br>जानें।</em>',
+    'f1-sub':     'मुफ्त टीबी थूक जांच <strong>आपके समुदाय में</strong> उपलब्ध है। आज ही नारंगी तंबू पर जाएं — कोई अपॉइंटमेंट नहीं, कोई शुल्क नहीं।',
+    'f1-free':    '✓ 100% मुफ्त &nbsp;·&nbsp; ✓ गोपनीय',
+    'f1-cta':     'अपना नजदीकी तंबू खोजें →',
+    'f1-footer':  'टीबी ठीक हो सकती है। शीघ्र पहचान जीवन बचाती है और परिवार की रक्षा करती है।<br>दिल्ली सक्रिय केस खोज पहल · शाहदरा और पूर्वी दिल्ली',
+    /* F2 Symptoms */
+    'f2-title':    'टीबी के लक्षण पहचानें',
+    'f2-intro':    'तपेदिक (टीबी) गंभीर है लेकिन <strong>पूरी तरह ठीक हो सकती है</strong>। बहुत से लोगों को पता नहीं होता कि उन्हें यह है, इसीलिए जल्दी जांच करना जरूरी है। यदि आपको या आपके परिवार के किसी सदस्य को <strong>2 सप्ताह या उससे अधिक</strong> से इनमें से कोई लक्षण है, तो आज ही जांच करवाएं।',
+    'sym1-name':   'लगातार खांसी',
+    'sym1-detail': '2+ सप्ताह से',
+    'sym2-name':   'बुखार और रात को पसीना',
+    'sym2-detail': 'हल्का बुखार, रात में पसीना',
+    'sym3-name':   'अकारण वजन घटना',
+    'sym3-detail': 'बिना कोशिश के वजन कम होना',
+    'sym4-name':   'थकान और कमज़ोरी',
+    'sym4-detail': 'पूरी रात सोने के बाद भी थकान',
+    'f2-warn':     '<strong>जांच के लिए लक्षण होना जरूरी नहीं।</strong> टीबी बीमार महसूस करने से पहले भी हो सकती है। अभी जांच करवाना आपको <em>और</em> आपके प्रियजनों को सुरक्षित रखता है।',
+    /* F3 How It Works */
+    'f3-hdr-lbl':  'आपकी 3-चरण मार्गदर्शिका',
+    'f3-hdr-ttl':  'जब आप तंबू पर जाते हैं तो क्या होता है?',
+    'step1':       '<strong>तंबू पर चलें</strong>अपने पड़ोस में नारंगी जांच तंबू ढूंढें, कोई अपॉइंटमेंट नहीं चाहिए।',
+    'step2':       '<strong>थूक का नमूना दें</strong>एक प्रशिक्षित स्वास्थ्य कर्मी आपका मार्गदर्शन करेगा। इसमें कुछ मिनट लगते हैं और यह बिल्कुल दर्द रहित है।',
+    'step3':       '<strong>अपने परिणाम प्राप्त करें</strong>एनटीईपी सीधे और निजी तौर पर आपसे संपर्क करता है। यदि टीबी का पता चलता है, तो मुफ्त उपचार तुरंत शुरू होता है।',
+    'f3-free-lbl': 'के तहत कवर',
+    'f3-free-val': 'राष्ट्रीय टीबी उन्मूलन कार्यक्रम — जांच और उपचार 100% मुफ्त',
+    'f3-conf':     'आप जो भी जानकारी साझा करते हैं वह <strong>पूरी तरह गोपनीय</strong> है। आपकी गोपनीयता हर समय सुरक्षित है।',
+    'f3-footer':   'नमूने 24 घंटों के भीतर एनटीईपी प्रयोगशालाओं में भेजे जाते हैं। जीनएक्सपर्ट विश्लेषण तेज, सटीक परिणाम सुनिश्चित करता है।',
+    /* B1 Myths */
+    'b1-lbl':    'आइए चीजें स्पष्ट करें',
+    'b1-title':  'टीबी मिथक बनाम तथ्य',
+    'myth-tag':  '✗ मिथक',
+    'fact-tag':  '✓ तथ्य',
+    'myth1-myth': '"केवल गरीब या कमजोर लोगों को टीबी होती है।"',
+    'myth1-fact': 'टीबी एक जीवाणु संक्रमण है, कोई भी इसकी चपेट में आ सकता है। अभिनेता <strong>अमिताभ बच्चन</strong> को टीबी हुई थी और उन्होंने उपचार के बाद पूरी तरह स्वस्थ हो गए।',
+    'myth2-myth': '"टीबी की जांच महंगी और दूर है।"',
+    'myth2-fact': 'मुफ्त जांच <strong>आपके पड़ोस में</strong> है। कोई अस्पताल नहीं जाना, बस नारंगी तंबू पर चलें।',
+    'myth3-myth': '"अगर मेरी जांच सकारात्मक आई, तो सभी को पता चल जाएगा।"',
+    'myth3-fact': 'परिणाम <strong>पूरी तरह गोपनीय</strong> हैं। एनटीईपी केवल आपसे, निजी तौर पर संपर्क करता है। आप तय करते हैं कि क्या साझा करना है।',
+    /* B2 Why It Matters */
+    'b2-eye':   'एक सार्वजनिक संदेश',
+    'b2-quote': '"टीबी एक बीमारी है। इसका इलाज हो सकता है। इसे छुपाएं नहीं — इससे लड़ें।"',
+    'b2-attr':  '— अमिताभ बच्चन से प्रेरित, टीबी से ठीक हुए और सार्वजनिक समर्थक',
+    'b2-slbl':  'जांच क्यों जरूरी है',
+    'b2-sdsc1': 'भारत में लक्षण और उपचार के बीच औसत दिन',
+    'b2-sdsc2': 'जल्दी पकड़ने पर उपचार सफलता दर',
+    'b2-txt':   'बिना निदान के हर दिन का मतलब है कि टीबी आपके आसपास के लोगों में फैल सकती है। जितनी जल्दी जांच करेंगे, उतनी जल्दी अपने प्रियजनों की रक्षा करेंगे।',
+    'b2-footer':'भारत के राष्ट्रीय टीबी प्रसार सर्वेक्षण 2019–2021 और WHO वैश्विक टीबी रिपोर्ट 2024 पर आधारित।',
+    /* B3 Where To Go */
+    'b3-tlbl':  'हमें खोजें',
+    'b3-tttl':  'जांच तंबू स्थान और कार्यक्रम',
+    'b3-key1':  'पायलट क्षेत्र',
+    'b3-val1':  'पूर्वी दिल्ली',
+    'b3-key2':  'तंबू स्थान',
+    'b3-val2':  'आपके घर के पास खुले स्थान, बाजार क्षेत्र और सामुदायिक जमावड़े के स्थान',
+    'b3-key3':  'समय',
+    'b3-val3':  'सोम – शनि · सुबह 8:00 – शाम 5:00',
+    'b3-key4':  'कोई अपॉइंटमेंट नहीं',
+    'b3-val4':  'कार्य घंटों के दौरान कभी भी आएं',
+    'b3-prm':   '<strong>हमारा वादा:</strong> आपका नमूना 24 घंटे के भीतर एनटीईपी लैब पहुंचता है। परिणाम निजी तौर पर साझा किए जाते हैं। यदि टीबी पाई जाती है, तो मुफ्त उपचार तुरंत शुरू होता है।',
+    'b3-ltxt':  'राष्ट्रीय टीबी उन्मूलन कार्यक्रम',
+    'b3-lsub':  'स्वास्थ्य एवं परिवार कल्याण मंत्रालय<br>भारत सरकार',
+  }
+};
+
+/* ══════════════ LANGUAGE SWITCH ══════════════ */
+let currentLang = 'en';
+
+function setLang(l) {
+  currentLang = l;
+  document.documentElement.lang = l;
+  document.body.classList.toggle('hi', l === 'hi');
+
+  /* Toggle button active state */
+  document.getElementById('btn-en').classList.toggle('active', l === 'en');
+  document.getElementById('btn-hi').classList.toggle('active', l === 'hi');
+
+  /* Update all data-t elements */
+  document.querySelectorAll('[data-t]').forEach(el => {
+    const key = el.getAttribute('data-t');
+    if (T[l][key] !== undefined) el.innerHTML = T[l][key];
+  });
+
+  /* Update desktop indicators */
+  const sind = document.getElementById('side-ind');
+  const fhint = document.getElementById('flip-hint');
+  if (sind) sind.textContent = flipped ? T[l]['side-back'] : T[l]['side-front'];
+  if (fhint) fhint.textContent = flipped ? T[l]['hint-front'] : T[l]['hint-back'];
+
+  /* Update mobile nav label */
+  const nlEl = document.getElementById('nl');
+  if (nlEl) nlEl.textContent = T[l]['nav-labels'][cur];
+}
+
+/* ══════════════ DESKTOP ══════════════ */
 const dv   = document.getElementById('dv');
 const sw   = document.getElementById('sw');
 const sind = document.getElementById('side-ind');
@@ -471,8 +690,8 @@ function scalePamphlet() {
 dv.addEventListener('click', () => {
   flipped = !flipped;
   dv.classList.toggle('flipped', flipped);
-  sind.textContent  = flipped ? '◦ Back Side'  : '◦ Front Side';
-  fhint.textContent = flipped ? '← Click to see the front' : 'Click anywhere to see the back →';
+  sind.textContent  = flipped ? T[currentLang]['side-back']  : T[currentLang]['side-front'];
+  fhint.textContent = flipped ? T[currentLang]['hint-front'] : T[currentLang]['hint-back'];
 });
 
 document.addEventListener('keydown', e => {
@@ -482,8 +701,8 @@ document.addEventListener('keydown', e => {
 window.addEventListener('load', scalePamphlet);
 window.addEventListener('resize', scalePamphlet);
 
-/* ── MOBILE ── */
-const panels = [
+/* ══════════════ MOBILE ══════════════ */
+const panelsEN = [
   'Front · Cover', 'Front · Symptoms', 'Front · How It Works',
   'Back · Myths vs Facts', 'Back · Why It Matters', 'Back · Where To Go'
 ];
@@ -492,9 +711,9 @@ const pt = document.getElementById('pt');
 const nl = document.getElementById('nl');
 const nd = document.getElementById('nd');
 const pb = document.getElementById('pb');
-const nb = document.getElementById('nb');
+const nbBtn = document.getElementById('nb');
 
-panels.forEach((_, i) => {
+panelsEN.forEach((_, i) => {
   const d = document.createElement('div');
   d.className = 'dot' + (i === 0 ? ' on' : '');
   d.addEventListener('click', () => go(i));
@@ -504,16 +723,16 @@ panels.forEach((_, i) => {
 function go(i) {
   cur = i;
   pt.style.transform = 'translateX(-' + (i * 100) + 'vw)';
-  nl.textContent = panels[i];
+  nl.textContent = T[currentLang]['nav-labels'][i];
   nd.querySelectorAll('.dot').forEach((d, j) => d.classList.toggle('on', j === i));
   pb.disabled = i === 0;
-  nb.disabled = i === panels.length - 1;
+  nbBtn.disabled = i === panelsEN.length - 1;
   const mps = pt.querySelectorAll('.mp');
   if (mps[i]) mps[i].scrollTop = 0;
 }
 
 pb.addEventListener('click', () => { if (cur > 0) go(cur - 1); });
-nb.addEventListener('click', () => { if (cur < panels.length - 1) go(cur + 1); });
+nbBtn.addEventListener('click', () => { if (cur < panelsEN.length - 1) go(cur + 1); });
 
 let tx = 0, ty = 0;
 document.getElementById('mv').addEventListener('touchstart', e => {
@@ -523,7 +742,7 @@ document.getElementById('mv').addEventListener('touchend', e => {
   const dx = tx - e.changedTouches[0].clientX;
   const dy = ty - e.changedTouches[0].clientY;
   if (Math.abs(dx) > Math.abs(dy) && Math.abs(dx) > 44) {
-    if (dx > 0 && cur < panels.length - 1) go(cur + 1);
+    if (dx > 0 && cur < panelsEN.length - 1) go(cur + 1);
     else if (dx < 0 && cur > 0) go(cur - 1);
   }
 }, { passive: true });
