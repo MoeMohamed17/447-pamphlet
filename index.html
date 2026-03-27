@@ -195,8 +195,14 @@ body.hi{font-family:'Noto Sans Devanagari','DM Sans',sans-serif}
 .b3-ltxt{font-family:'Libre Baskerville',serif;font-size:13px;font-weight:700}
 .b3-lsub{font-size:10px;opacity:.7;line-height:1.4}
 
+/* Mobile lang toggle (inside mnav) */
+#lang-toggle-mobile{display:none;flex-shrink:0}
+#lang-toggle-mobile .lt-btn{font-size:11px;padding:5px 12px}
+
 /* ══════════════ MOBILE BREAKPOINT ══════════════ */
 @media(max-width:700px){
+  #lang-toggle{display:none}
+  #lang-toggle-mobile{display:flex;background:rgba(255,255,255,.1);border-radius:22px;overflow:hidden;border:1px solid rgba(255,255,255,.15)}
   #dv{display:none}
   #mv{display:block}
   .mp .f1,.mp .f2,.mp .f3,.mp .b1,.mp .b2,.mp .b3{
@@ -467,6 +473,10 @@ body.hi{font-family:'Noto Sans Devanagari','DM Sans',sans-serif}
       <div class="nl" id="nl">Front · Cover</div>
       <div class="nd" id="nd"></div>
     </div>
+    <div id="lang-toggle-mobile">
+      <button class="lt-btn active" id="btn-en-m" onclick="setLang('en')">EN</button>
+      <button class="lt-btn" id="btn-hi-m" onclick="setLang('hi')">हि</button>
+    </div>
     <button class="nb" id="nb">&#8250;</button>
   </div>
 </div><!-- /mv -->
@@ -648,9 +658,11 @@ function setLang(l) {
   document.documentElement.lang = l;
   document.body.classList.toggle('hi', l === 'hi');
 
-  /* Toggle button active state */
+  /* Toggle button active state (desktop + mobile) */
   document.getElementById('btn-en').classList.toggle('active', l === 'en');
   document.getElementById('btn-hi').classList.toggle('active', l === 'hi');
+  document.getElementById('btn-en-m').classList.toggle('active', l === 'en');
+  document.getElementById('btn-hi-m').classList.toggle('active', l === 'hi');
 
   /* Update all data-t elements */
   document.querySelectorAll('[data-t]').forEach(el => {
